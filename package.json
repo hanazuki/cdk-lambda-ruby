@@ -1,0 +1,42 @@
+{
+  "name": "cdk-lambda-ruby",
+  "version": "0.0.0",
+  "description": "CDK Construct Library for AWS Lambda in Ruby",
+  "keywords": [
+    "aws",
+    "cdk",
+    "constructs",
+    "lambda",
+    "ruby"
+  ],
+  "homepage": "https://github.com/hanazuki/cdk-lambda-ruby#readme",
+  "bugs": "https://github.com/hanazuki/cdk-lambda-ruby/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hanazuki/cdk-lambda-ruby.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Kasumi Hanazuki",
+    "email": "kasumi@rollingapple.net"
+  },
+  "scripts": {
+    "prepare": "tsc"
+  },
+  "files": [
+    "lib/*.js",
+    "lib/*.d.ts",
+    "lib/*.sh"
+  ],
+  "main": "lib/index.js",
+  "types": "lib",
+  "dependencies": {
+    "@aws-cdk/aws-lambda": "^1.76.0",
+    "@aws-cdk/core": "^1.76.0",
+    "@types/node": "^14.14.10",
+    "constructs": "^3.2.59"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  }
+}
