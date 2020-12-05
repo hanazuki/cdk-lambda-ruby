@@ -33,8 +33,7 @@
   "dependencies": {
     "@aws-cdk/aws-lambda": "^1.76.0",
     "@aws-cdk/core": "^1.76.0",
-    "@types/node": "^14.14.10",
-    "constructs": "^3.2.59"
+    "@types/node": "^14.14.10"
   },
   "devDependencies": {
     "typescript": "^4.1.2"
