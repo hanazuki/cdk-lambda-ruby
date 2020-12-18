@@ -24,6 +24,7 @@
     "prepare": "tsc"
   },
   "files": [
+    "*.md",
     "lib/**/*.js",
     "lib/**/*.d.ts",
     "lib/**/*.sh"
