@@ -24,3 +24,26 @@ jobs:
       run: npm ci
     - name: Package
       run: npm pack
+
+  example:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+    - name: Install
+      run: |
+        npm ci
+        cd example
+        npm ci
+    - name: Run
+      run: |
+        cd example
+        npm run cdk synth
