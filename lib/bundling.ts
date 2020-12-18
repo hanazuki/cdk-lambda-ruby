@@ -5,6 +5,8 @@ import { createHash } from 'crypto';
 
 import * as cdk from '@aws-cdk/core';
 
+import {emptyDirSync} from './private/fs'
+
 export interface BundlerConfig {
   without?: string;
   build?: { [gem: string]: string };
@@ -43,10 +45,6 @@ export class RubyBundling implements cdk.BundlingOptions, cdk.ILocalBundling {
 
     this.volumes = [
       {
-        hostPath: this.buildCacheDirectory,
-        containerPath: cdk.AssetStaging.BUNDLING_OUTPUT_DIR,
-      },
-      {
         hostPath: props.cacheDirectory,
         containerPath: RubyBundling.BUNDLING_CACHE_DIR,
         consistency: cdk.DockerVolumeConsistency.DELEGATED,
@@ -83,10 +81,19 @@ export class RubyBundling implements cdk.BundlingOptions, cdk.ILocalBundling {
   public tryBundle(outputDir: string): boolean {
     fs.mkdirSync(this.buildCacheDirectory, {recursive: true});
 
-    cdk.FileSystem.copyDirectory(this.sourceDirectory, this.buildCacheDirectory, {
+    cdk.FileSystem.copyDirectory(this.sourceDirectory, outputDir, {
       exclude: RubyBundling.EXCLUDE_FILES,
       ignoreMode: cdk.IgnoreMode.GIT,
     });
+
+    if(!cdk.FileSystem.isEmpty(this.buildCacheDirectory)) {
+      process.stderr.write(`Restoring cache from ${this.buildCacheDirectory}...\n`);
+
+      cdk.FileSystem.copyDirectory(this.buildCacheDirectory, outputDir, {
+        exclude: ["/*", "!/vendor", "!/vendor/bundle"],
+        ignoreMode: cdk.IgnoreMode.GIT,
+      });
+    }
 
     const userInfo = os.userInfo();
     const user = userInfo.uid !== -1 ? `${userInfo.uid}:${userInfo.gid}` : '1000:1000';
@@ -94,12 +101,23 @@ export class RubyBundling implements cdk.BundlingOptions, cdk.ILocalBundling {
     this.image.run({
       command: this.command,
       user,
-      volumes: this.volumes,
+      volumes: [
+        {
+          hostPath: outputDir,
+          containerPath: cdk.AssetStaging.BUNDLING_OUTPUT_DIR,
+        },
+        ...this.volumes,
+      ],
       environment: this.environment,
       workingDirectory: cdk.AssetStaging.BUNDLING_OUTPUT_DIR,
     });
 
-    cdk.FileSystem.copyDirectory(this.buildCacheDirectory, outputDir);
+    emptyDirSync(this.buildCacheDirectory);
+
+    cdk.FileSystem.copyDirectory(outputDir, this.buildCacheDirectory, {
+      exclude: ["/*", "!/vendor", "!/vendor/bundle"],
+      ignoreMode: cdk.IgnoreMode.GIT,
+    });
 
     return true;
   }
