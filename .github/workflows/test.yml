@@ -26,12 +26,16 @@ jobs:
       run: npm pack
 
   example:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [12, 14, 16]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: ${{ matrix.node }}
     - uses: actions/cache@v2
       with:
         path: ~/.npm
