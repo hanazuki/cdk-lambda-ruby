@@ -14,6 +14,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14.x
+    - name: Setup corepack
+      run: |
+        npm install -g corepack
+        corepack enable npm
     - uses: actions/cache@v2
       with:
         path: ~/.npm
@@ -36,6 +40,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
+    - name: Setup corepack
+      run: |
+        npm install -g corepack
+        corepack enable npm
     - uses: actions/cache@v2
       with:
         path: ~/.npm
