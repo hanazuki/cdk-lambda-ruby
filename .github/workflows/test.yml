@@ -59,3 +59,11 @@ jobs:
       run: |
         cd example
         npm run cdk synth
+
+  test-finish:
+    runs-on: ubuntu-latest
+    needs:
+    - test
+    - example
+    steps:
+    - run: echo OK
