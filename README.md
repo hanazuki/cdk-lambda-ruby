@@ -5,20 +5,27 @@ This library provides [CDK](https://github.com/aws/aws-cdk) constructs for AWS L
 ## Synopsis
 
 ```typescript
+import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as lambdaRuby from 'cdk-lambda-ruby';
 
-new lambdaRuby.RubyFunction(this, 'MyFunction', {
-  runtime: lambda.Runtime.RUBY_2_7,
-  sourceDirectory: 'function',
-  handler: 'main.handler',
-  bundlerConfig: {  // optional
-    without: 'development:test',  // optional, default: 'development:test'
-    build: {  // optional
-      'some-gem': '--some-build-option',
-    },
-  },
-});
+export class ExampleStack extends cdk.Stack {
+  public constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    new lambdaRuby.RubyFunction(this, 'MyFunction', {
+      runtime: lambda.Runtime.RUBY_2_7,
+      sourceDirectory: 'function',
+      handler: 'main.handler',
+      bundlerConfig: {  // optional
+        without: 'development:test',  // optional, default: 'development:test'
+        build: {  // optional
+          'some-gem': '--some-build-option',
+        },
+      },
+    });
+  }
+}
 ```
 
 ## Description
