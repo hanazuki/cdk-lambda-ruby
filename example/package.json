@@ -7,7 +7,7 @@
     "cdk": "cdk"
   },
   "dependencies": {
-    "@types/node": "^16.11.9",
+    "@types/node": "^16.11.10",
     "aws-cdk": "^1.134.0",
     "cdk-lambda-ruby": "file:..",
     "ts-node": "^10.4.0",
