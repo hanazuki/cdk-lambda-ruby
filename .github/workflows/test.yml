@@ -16,7 +16,7 @@ jobs:
         node-version: 14.x
     - name: Setup corepack
       run: |
-        npm install -g corepack
+        type corepack || npm install -g corepack
         corepack enable npm
     - uses: actions/cache@v2
       with:
@@ -42,7 +42,7 @@ jobs:
         node-version: ${{ matrix.node }}
     - name: Setup corepack
       run: |
-        npm install -g corepack
+        type corepack || npm install -g corepack
         corepack enable npm
     - uses: actions/cache@v2
       with:
