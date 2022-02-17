@@ -1,7 +1,7 @@
 import * as path from 'path';
 
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
+import { Construct } from 'constructs';
+import { aws_lambda as lambda } from 'aws-cdk-lib';
 
 import { BundlerConfig, RubyBundling } from './bundling';
 import { appOf } from './private/internal';
@@ -19,13 +19,13 @@ export class RubyFunction extends lambda.Function {
     without: 'development:test',
   };
 
-  public constructor(scope: cdk.Construct, id: string, props: RubyFunctionProps) {
+  public constructor(scope: Construct, id: string, props: RubyFunctionProps) {
     const cacheDirectory = path.join(process.cwd(), appOf(scope).outdir, '.cache', 'lambda-ruby');
 
     const bundling = new RubyBundling({
       sourceDirectory: props.sourceDirectory,
-      image: props.runtime.bundlingDockerImage,
-      bundlerConfig: {...RubyFunction.DEFAULT_BUNDLER_CONFIG, ...props.bundlerConfig},
+      image: props.runtime.bundlingImage,
+      bundlerConfig: { ...RubyFunction.DEFAULT_BUNDLER_CONFIG, ...props.bundlerConfig },
       cacheDirectory,
     });
 

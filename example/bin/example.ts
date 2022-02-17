@@ -1,7 +1,6 @@
 #!/usr/bin/env ts-node
-import * as cdk from '@aws-cdk/core';
-
+import { App } from 'aws-cdk-lib';
 import { ExampleStack } from '..';
 
-const app = new cdk.App();
+const app = new App();
 new ExampleStack(app, `LambdaRubyExample`);

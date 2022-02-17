@@ -1,14 +1,14 @@
 import * as path from 'path';
 
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
+import { Construct } from 'constructs';
+import { Stack, StackProps, aws_lambda as lambda } from 'aws-cdk-lib';
 import * as lambdaRuby from 'cdk-lambda-ruby';
 
-export interface ExampleStackProps extends cdk.StackProps {
+export interface ExampleStackProps extends StackProps {
 }
 
-export class ExampleStack extends cdk.Stack {
-  public constructor(scope: cdk.Construct, id: string, props?: ExampleStackProps) {
+export class ExampleStack extends Stack {
+  public constructor(scope: Construct, id: string, props?: ExampleStackProps) {
     super(scope, id, props);
 
     new lambdaRuby.RubyFunction(this, 'RubyFunction2_5', {
