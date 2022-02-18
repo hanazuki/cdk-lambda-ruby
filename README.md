@@ -1,16 +1,17 @@
 # CDK Construct Library for AWS Lambda in Ruby
 
-This library provides [CDK](https://github.com/aws/aws-cdk) constructs for AWS Lambda functions written in [Ruby](https://www.ruby-lang.org/).
+This library provides [AWS CDK](https://github.com/aws/aws-cdk) constructs for AWS Lambda functions written in [Ruby](https://www.ruby-lang.org/).
 
 ## Synopsis
 
 ```typescript
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
+import * as cdk from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as lambdaRuby from 'cdk-lambda-ruby';
+import { Construct } from 'constructs';
 
 export class ExampleStack extends cdk.Stack {
-  public constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  public constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     new lambdaRuby.RubyFunction(this, 'MyFunction', {
@@ -34,7 +35,7 @@ export class ExampleStack extends cdk.Stack {
 
 If a file named "Gemfile" exists directly inside `sourceDirectory`, the dependency gems are bundled using [Bundler](https://bundler.io/). Bundling is performed inside a [Docker](https://www.docker.com/) container using the Lambda builder images privided by AWS. The `bundlerConfig` prop may have the `without` field to specify a colon-separated list of gem groups to skip installation.
 
-`RubyFunction` also accepts common [FunctionOptions](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-lambda.FunctionOptions.html).
+`RubyFunction` also accepts common [FunctionOptions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.FunctionOptions.html).
 
 ## Caching
 
