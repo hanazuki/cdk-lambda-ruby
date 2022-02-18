@@ -1,8 +1,12 @@
 # ChangeLog
 
+## v0.2.0
+- [breaking] Node.js v12 is no longer supported.
+- [breaking] Migrated to AWS CDK v2.
+
 ## v0.1.3
 
-- Fixes a bug that a file removed from the source directory is still included in the bundled asset due to wrong caching.
+- Fixed a bug that a file removed from the source directory is still included in the bundled asset due to wrong caching.
 
 ## v0.1.2
 
