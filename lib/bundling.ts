@@ -3,9 +3,9 @@ import * as path from 'path';
 import * as os from 'os';
 import { createHash } from 'crypto';
 
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib';
 
-import {emptyDirSync} from './private/fs'
+import { emptyDirSync } from './private/fs'
 
 export interface BundlerConfig {
   without?: string;
@@ -14,13 +14,13 @@ export interface BundlerConfig {
 
 export interface RubyBundlingProps {
   readonly sourceDirectory: string;
-  readonly image: cdk.BundlingDockerImage;
+  readonly image: cdk.DockerImage;
   readonly bundlerConfig: BundlerConfig;
   readonly cacheDirectory: string;
 }
 
 export class RubyBundling implements cdk.BundlingOptions, cdk.ILocalBundling {
-  public readonly image: cdk.BundlingDockerImage;
+  public readonly image: cdk.DockerImage;
   public readonly command: string[];
   public readonly volumes: cdk.DockerVolume[];
   public readonly environment: { [key: string]: string };
