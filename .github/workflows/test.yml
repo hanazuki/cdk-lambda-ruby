@@ -15,6 +15,9 @@ jobs:
       with:
         node-version: '16'
         cache: npm
+        cache-dependency-path: |
+          package-lock.json
+          example/package-lock.json
     - name: Setup corepack
       run: |
         type corepack || npm install -g corepack
@@ -36,6 +39,9 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
         cache: npm
+        cache-dependency-path: |
+          package-lock.json
+          example/package-lock.json
     - name: Setup corepack
       run: |
         type corepack || npm install -g corepack
