@@ -31,7 +31,7 @@ export class ExampleStack extends cdk.Stack {
 
 ## Description
 
-`RubyFunction` deploys the `sourceDirectory` as a Lambda function written in Ruby. `runtime` is expected to be a Ruby-family Lambda Runtime (i.e., RUBY_2_5 or RUBY_2_7 at the moment).
+`RubyFunction` deploys the `sourceDirectory` as a Lambda function written in Ruby. `runtime` is expected to be a Ruby-family Lambda Runtime (i.e., RUBY\_2\_7 at the moment).
 
 If a file named "Gemfile" exists directly inside `sourceDirectory`, the dependency gems are bundled using [Bundler](https://bundler.io/). Bundling is performed inside a [Docker](https://www.docker.com/) container using the Lambda builder images privided by AWS. The `bundlerConfig` prop may have the `without` field to specify a colon-separated list of gem groups to skip installation.
 
