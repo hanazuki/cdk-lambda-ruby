@@ -1,17 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    mini_portile2 (2.4.0)
-    minitest (5.14.2)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    bigdecimal (3.1.5)
+    minitest (5.20.0)
+    oj (3.16.3)
+      bigdecimal (>= 3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   minitest
-  nokogiri
+  oj
 
 BUNDLED WITH
    2.3.7

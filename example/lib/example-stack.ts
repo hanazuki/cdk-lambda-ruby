@@ -17,5 +17,11 @@ export class ExampleStack extends cdk.Stack {
       sourceDirectory: path.join(__dirname, '../app'),
       handler: 'main.handler',
     });
+
+    new lambdaRuby.RubyFunction(this, 'RubyFunction3_2', {
+      runtime: lambda.Runtime.RUBY_3_2,
+      sourceDirectory: path.join(__dirname, '../app'),
+      handler: 'main.handler',
+    });
   }
 }
