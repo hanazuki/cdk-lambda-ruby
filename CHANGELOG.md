@@ -1,8 +1,9 @@
 # ChangeLog
 
-## v0.2.0 (UNRELEASED)
-- [breaking] Node.js v12 is no longer supported.
+## v0.2.0 (2023-12-28)
+- [breaking] Node.js < v18 is no longer supported.
 - [breaking] Migrated to AWS CDK v2.
+- Added support for Ruby 3.2 runtime.
 
 ## v0.1.3 (2020-12-20)
 
