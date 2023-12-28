@@ -44,6 +44,9 @@ jobs:
     - name: Setup corepack
       run: |
         corepack enable npm
+    - uses: aws-actions/setup-sam@v2
+      with:
+        use-installer: true
     - name: Install
       run: |
         npm ci
@@ -53,6 +56,11 @@ jobs:
       run: |
         cd example
         npm run cdk synth
+    - name: Test
+      run: |
+        cd example
+        sam local invoke -t ./cdk.out/LambdaRubyExample.template.json RubyFunction2_7
+        sam local invoke -t ./cdk.out/LambdaRubyExample.template.json RubyFunction3_2
 
   test-finish:
     runs-on: ubuntu-latest
