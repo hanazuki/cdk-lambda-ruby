@@ -10,6 +10,9 @@ export BUNDLE_PATH=vendor/bundle
 export BUNDLE_RETRY=3
 
 if test -f Gemfile; then
+  bundle config set --local deployment "$BUNDLE_DEPLOYMENT"
+  bundle config set --local path "$BUNDLE_PATH"
+  bundle config set --local without "$BUNDLE_WITHOUT"
   exec bundle install
 else
   exec rm -rf vendor/bundle
