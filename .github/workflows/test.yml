@@ -40,7 +40,6 @@ jobs:
         cache: npm
         cache-dependency-path: |
           package-lock.json
-          example/package-lock.json
     - name: Setup corepack
       run: |
         corepack enable npm
