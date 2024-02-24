@@ -12,12 +12,6 @@ export class ExampleStack extends cdk.Stack {
   public constructor(scope: Construct, id: string, props?: ExampleStackProps) {
     super(scope, id, props);
 
-    new lambdaRuby.RubyFunction(this, 'RubyFunction2_7', {
-      runtime: lambda.Runtime.RUBY_2_7,
-      sourceDirectory: path.join(__dirname, '../app'),
-      handler: 'main.handler',
-    });
-
     new lambdaRuby.RubyFunction(this, 'RubyFunction3_2', {
       runtime: lambda.Runtime.RUBY_3_2,
       sourceDirectory: path.join(__dirname, '../app'),
