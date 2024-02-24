@@ -1,5 +1,8 @@
 # ChangeLog
 
+## v0.3.0 (UNRELEASED)
+- [breaking] Dropped support for Ruby 2.7 runtime.
+
 ## v0.2.0 (2023-12-28)
 - [breaking] Node.js < v18 is no longer supported.
 - [breaking] Migrated to AWS CDK v2.
